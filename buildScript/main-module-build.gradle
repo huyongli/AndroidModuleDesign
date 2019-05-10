@@ -1,0 +1,7 @@
+configModuleGradleScript(mainModuleType)
+
+getRootProject().getSubprojects().each {item ->
+    if(item.name != project.name && !isDebugLibraryModule(item.name)) {
+        project.dependencies.add("implementation", project(":$item.name"))
+    }
+}

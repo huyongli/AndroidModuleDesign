@@ -1,0 +1,42 @@
+project.ext {
+    mainModuleType = "mainModule"
+    debugLibraryModuleType = "debugLibraryModule"
+    libraryModuleType = "libraryModule"
+
+    configModuleGradleScript = { moduleType ->
+        applyPlugin(moduleType)
+        applyAndroidDefaultConfig()
+        applyApplicationId(moduleType)
+    }
+
+    applyAndroidDefaultConfig = {
+        project.android.compileSdkVersion compileSdkVersion
+        project.android.defaultConfig.targetSdkVersion targetSdkVersion
+        project.android.defaultConfig.minSdkVersion minSdkVersion
+    }
+
+    applyPlugin = { moduleType ->
+        if(moduleType == libraryModuleType) {
+            project.apply plugin: 'com.android.library'
+            project.description "library"
+        } else {
+            project.apply plugin: 'com.android.application'
+            project.description "app"
+        }
+        project.apply plugin: 'kotlin-android'
+        project.apply plugin: 'kotlin-android-extensions'
+    }
+
+    applyApplicationId = { moduleType ->
+        if(moduleType == mainModuleType) {
+            project.android.defaultConfig.applicationId applicationId
+        } else if(moduleType == debugLibraryModuleType) {
+            project.android.defaultConfig.applicationId applicationId + "." + project.name
+        }
+    }
+
+    isDebugLibraryModule = { projectName ->
+        def debugLibraryModuleList = debugLibraryModules
+        return project.hasProperty('debugLibraryModules') && debugLibraryModuleList.indexOf(projectName) != -1
+    }
+}

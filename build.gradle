@@ -1,0 +1,58 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext {
+        kotlin_version = '1.3.21'
+        gradleVersion = '3.3.2'
+
+        applicationId = "com.laohu.module.design"
+
+        compileSdkVersion = 28
+        minSdkVersion = 21
+        targetSdkVersion = 28
+        supportLibraryVersion = "28.0.0"
+        constraintLayoutVersion = '1.1.3'
+
+        //test
+        testJunit = "4.12"
+        testRunner = "1.0.2"
+        testEspressoCore = "3.0.2"
+
+        dependencies = [
+                kotlinStdlibJdk7: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                appcompatV7: "com.android.support:appcompat-v7:$supportLibraryVersion",
+                constraintLayout: "com.android.support.constraint:constraint-layout:$constraintLayoutVersion",
+
+                testJunit: "junit:junit:$testJunit",
+                testRunner: "com.android.support.test:runner:$testRunner",
+                testEspressoCore: "com.android.support.test.espresso:espresso-core:$testEspressoCore"
+        ]
+
+        libraryModuleDependencies = [
+
+        ]
+    }
+
+    repositories {
+        google()
+        jcenter()
+
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$gradleVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

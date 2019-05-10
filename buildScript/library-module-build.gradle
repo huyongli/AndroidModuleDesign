@@ -1,0 +1,8 @@
+def getModuleType() {
+    if(isDebugLibraryModule(project.name)) {
+        return debugLibraryModuleType
+    } else {
+        return libraryModuleType
+    }
+}
+configModuleGradleScript(getModuleType())
