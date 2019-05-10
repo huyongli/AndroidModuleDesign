@@ -1,2 +1,1 @@
-# AndroidModuleDesign
-Android模块化开发方案
+一个Android模块化开发工程配置方案
