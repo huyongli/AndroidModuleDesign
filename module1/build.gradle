@@ -20,14 +20,14 @@ android {
     sourceSets {
         main {
             if(isDebugLibraryModule(project.name)) {
-                manifest.srcFile 'src/debug/AndroidManifest.xml'
-                java.srcDirs = ['src/debug/java', 'src/main/java']
-                res.srcDirs = ['src/debug/res','src/main/res']
+                manifest.srcFile 'src/app/AndroidManifest.xml'
+                java.srcDirs = ['src/app/java', 'src/main/java']
+                res.srcDirs = ['src/app/res','src/main/res']
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
                 resources {
                     //排除java/debug文件夹下的所有文件
-                    exclude 'src/debug/*'
+                    exclude 'src/app/*'
                 }
             }
         }
